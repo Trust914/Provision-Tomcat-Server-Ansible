@@ -96,9 +96,9 @@ tomcat_archive_dest: /tmp/apache-tomcat-{{ tomcat_ver }}.tar.gz
   become_method: sudo       # Set become method
   remote_user: root         # Update username for remote server
   vars:
-    project_name: java-webapp-T
-    tomcat_ver: 8.5.9
-    tomcat_v_num: 8 
+    project_name: java-webapp-T		# Update project name
+    tomcat_ver: 8.5.9			# Update tomcat version
+    tomcat_v_num: 8 			# Update tomcat version number
   roles:
     - tomcat
     - deploy-artifact
