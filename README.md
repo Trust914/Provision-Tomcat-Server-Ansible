@@ -1,6 +1,6 @@
-## Role info
+## Project Info
 
-> Ansible Role to Install any version of Tomcat on CentOS, Fedora, Debian and Ubuntu Linux, clone a Java app repo and build the code
+> This project contains two Ansible Roles to Install any version of Tomcat on CentOS, Fedora, Debian and Ubuntu Linux, clone a Java app repo and build the code
 
 
 ## Tested on the following operating systems
