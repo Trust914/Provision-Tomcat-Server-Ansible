@@ -69,8 +69,8 @@ ansible_ssh_private_key_file=web-app-key.pem # Update your private key for ansib
 
 ```
 repo_dir: /tmp/repo/{{ project_name }}
-git_url: https://github.com/Trust914/java-login-app.git  # Update to your required repo url
-git_branch: master # Update to the required branch in the git_url
+git_url: https://github.com/Trust914/java-login-app.git  	   # Update to your required repo url
+git_branch: master 						   # Update to the required branch in the git_url
 ```
 
 
@@ -80,7 +80,7 @@ git_branch: master # Update to the required branch in the git_url
 ui_manager_user: manager                    # User who can access the UI manager section only
 ui_manager_pass: Str0ngManagerP@ssw3rd      # UI manager user password
 ui_admin_username: admin                    # User who can access bpth manager and admin UI sections
-ui_admin_pass: Str0ngAdminP@ssw3rd       # UI admin password
+ui_admin_pass: Str0ngAdminP@ssw3rd          # UI admin password
 
 tomcat_archive_url: https://archive.apache.org/dist/tomcat/tomcat-{{ tomcat_v_num }}/v{{ tomcat_ver }}/bin/apache-tomcat-{{ tomcat_ver }}.tar.gz
 tomcat_archive_dest: /tmp/apache-tomcat-{{ tomcat_ver }}.tar.gz
