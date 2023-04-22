@@ -65,10 +65,44 @@ ansible_ssh_private_key_file=web-app-key.pem # Update your private key for ansib
 
 ```
 
-- Update variables in roles/deploy-artifact/defaults/main.yml file - Set git_url, git_branch, etc., as appropriate
-- Update variables in roles/tomcat/defaults/main.yml file
+- Update variables in roles/deploy-artifact/defaults/main.yml file - Set git_url and git_branch as appropriate
+
+```
+repo_dir: /tmp/repo/{{ project_name }}
+git_url: https://github.com/Trust914/java-login-app.git  # Update to your required repo url
+git_branch: master # Update to the required branch in the git_url
+```
+
+
+- Update variables in roles/tomcat/defaults/main.yml file - Set tomcat_ver,tomcat_v_num,ui_manager_user, etc.
+
+```
+ui_manager_user: manager                    # User who can access the UI manager section only
+ui_manager_pass: Str0ngManagerP@ssw3rd      # UI manager user password
+ui_admin_username: admin                    # User who can access bpth manager and admin UI sections
+ui_admin_pass: Str0ngAdminP@ssw3rd       # UI admin password
+
+tomcat_archive_url: https://archive.apache.org/dist/tomcat/tomcat-{{ tomcat_v_num }}/v{{ tomcat_ver }}/bin/apache-tomcat-{{ tomcat_ver }}.tar.gz
+tomcat_archive_dest: /tmp/apache-tomcat-{{ tomcat_ver }}.tar.gz
+```
+
+
 - Update variables in provision-tomcat-server.yml file - Set Project name, java version, etc
 
+```
+- name: Provision tomcat server
+  hosts: websrvgrp
+  become: yes               # If to escalate privilege
+  become_method: sudo       # Set become method
+  remote_user: root         # Update username for remote server
+  vars:
+    project_name: java-webapp-T
+    tomcat_ver: 8.5.9
+    tomcat_v_num: 8 
+  roles:
+    - tomcat
+    - deploy-artifact
+```
 
 If you are using non root remote user, then set username and enable sudo:
 
@@ -85,34 +119,29 @@ Playbook executed as root user - with ssh key:
 
 ```
 $ ansible-playbook  provision-tomcat-server.yml 
-
 ```
 
 Playbook executed as root user - with password:
 
 ```
 $ ansible-playbook provision-tomcat-server.yml --ask-pass
-
 ```
 
 Playbook executed as sudo user - with password:
 
 ```
 $ ansible-playbook provision-tomcat-server.yml --ask-pass --ask-become-pass
-
 ```
 
 Playbook executed as sudo user - with ssh key and sudo password:
 
 ```
 $ ansible-playbook provision-tomcat-server.yml --ask-become-pass
-
 ```
 Playbook executed as sudo user - with ssh key and passwordless sudo:
 
 ```
 $ ansible-playbook provision-tomcat-server.yml --ask-become-pass
-
 ```
 
 Execution should be successful without errors:
