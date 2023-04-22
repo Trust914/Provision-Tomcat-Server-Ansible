@@ -1,0 +1,7 @@
+---
+# defaults file for deploy-artifact
+#
+repo_dir: /tmp/repo/{{ project_name }}
+git_url: https://github.com/Trust914/java-login-app.git
+git_branch: master
+

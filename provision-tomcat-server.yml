@@ -1,0 +1,19 @@
+---
+
+# Playbook to provision a java webapp server by installing tomcat and building the source code
+# Play to deploy the artifact coming soooooonnn!!
+#
+
+- name: Provision tomcat server
+  hosts: websrvgrp
+  become: yes               # If to escalate privilege
+  become_method: sudo       # Set become method
+  remote_user: root         # Update username for remote server
+  vars:
+    project_name: java-webapp-T
+    tomcat_ver: 8.5.9
+    tomcat_v_num: 8 
+  roles:
+    - tomcat
+    - deploy-artifact
+ 

@@ -1,0 +1,29 @@
+---
+# Tasks to perform on a RedHat machine
+
+- name: Update system if the last one is more than 1800 seconds ago
+  apt:
+    update_cache: yes
+    cache_valid_time: 1800
+
+- name: Install maven
+  apt:
+    name: maven
+    state: present
+
+- name: Clone the repository
+  git:
+    repo: "{{ git_url }}"
+    dest: "{{ repo_dir }}"
+    version: "{{ git_branch }}"
+  register: source_code_clones
+
+- debug:
+    var: source_code_clones.changed
+
+- name: Build code
+  shell:
+    cmd: mvn clean install
+    chdir: "{{ repo_dir }}/"
+  when: source_code_clones.changed
+

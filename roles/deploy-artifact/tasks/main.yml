@@ -1,0 +1,5 @@
+---
+# tasks file for deploy-artifact
+#
+- name: Add the relevant tasks per OS
+  include_tasks: "build-artifact-{{ ansible_os_family }}.yml" 

@@ -1,0 +1,17 @@
+web01 ansible_host=172.31.84.93 
+web02 ansible_host=172.31.93.72
+web03 ansible_host=172.31.80.116 ansible_user=ubuntu # Add hostname, private ip and user if appropriate
+
+[websrvgrp]
+web01
+web02
+web03
+
+
+
+[websrvgrp:vars]
+ansible_user=centos 
+ansible_ssh_private_key_file=web-app-key.pem 
+
+
+
